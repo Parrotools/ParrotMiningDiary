@@ -10,7 +10,7 @@
 
 /*左侧边栏*/
 .left{
-     width: 17%;
+     width: 300px;
     height: 100vh;
     background: #f3f4f6;
     float: left;
@@ -36,15 +36,24 @@
     background: black;
 }
 .nav{
-    margin-top: 5px;
+
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+
+
 }
 .nav-title{
+    padding-left: 10px;
+    border-radius: 20px;
     height: 40px;
     width: 100%;
     color: black;
     /*text-align: start;*/
     line-height: 40px;
     cursor:pointer ;
+    transition: all .3s ease-out 0s;
+
 }
 .nav-title:hover{
      height: 40px;
@@ -53,27 +62,48 @@
     background: #E9EAEC;
      /*text-align: start;*/
      line-height: 40px;
+
      cursor:pointer ;
  }
 .new-dia{
+    padding-left: 10px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #C2D6F8;
+    border-radius: 20px;
     height: 40px;
     width: 100%;
-    color: black;
+    color: blue;
+    font-weight: bolder;
     /*text-align: start;*/
     line-height: 40px;
     cursor: pointer;
+    background: #E5EBF7;
+}
+.new-dia:hover{
+    height: 40px;
+    width: 100%;
+    color: blue ;
+    /*text-align: start;*/
+    line-height: 40px;
+    cursor: pointer;
+    background: #DAE4F7;
 }
 .nav-content{
     height: 100%;
     width: 100%;
 
+
 }
 .nav-content>a{
+    padding-left: 10px;
+    border-radius: 20px;
     display: block;
     height: 40px;
     width: 100%;
     color: black ;
     text-decoration: none;
+
     line-height: 40px;
 }
 .nav-content>a:hover{
@@ -88,8 +118,9 @@
 
 /*右内容*/
 .right{
-    width: 81%;
+
     height: 100vh;
-    background-color: white;
+    background-color: blue;
+    /*background-color: white;*/
     float: right;
 }

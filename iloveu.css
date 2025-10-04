@@ -22,7 +22,12 @@
     flex-shrink: 0;
     float: none;
     position: fixed;
-
+    overflow-y: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.left::-webkit-scrollbar {
+    display: none;
 
 }
 
@@ -169,16 +174,17 @@
     position: absolute;
     height: 40px;
     margin: 20px auto 0;
-    width: 250px;
+    width: 240px;
     padding-left: 25px;
     padding-top: 10px;
     /*position: fixed;*/
     left: 15px;
-    bottom: 20px;
+    bottom: 10px;
     background-color: white;
     border-radius: 50px;
     cursor: pointer;
     transition: all .3s ease-out 0s;
+
 }
 .download:hover{
     background-color: #E9EAEC;
@@ -511,4 +517,116 @@
 }
 .close.disabled{
     visibility: hidden;
+}
+.side{
+    display: flex;
+    flex-direction: column;
+}
+.history{
+    padding-left: 10px;
+    border-radius: 20px;
+    height: 40px;
+    width: 100%;
+    color: black;
+    /*text-align: start;*/
+    line-height: 40px;
+    cursor:pointer ;
+    transition: all .3s ease-out 0s;
+}
+.history:hover{
+    height: 40px;
+    width: 100%;
+    color: black;
+    background: #E9EAEC;
+    /*text-align: start;*/
+    line-height: 40px;
+
+    cursor:pointer ;
+}
+.history.expanded span{
+    rotate: -180deg;
+}
+.side{
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.history p{
+    display: inline-block;
+}
+.history span{
+    margin-right: 15px;
+    display: inline-block;
+    float: right;
+    font-size: 15px;
+    font-weight: bolder;
+    color: dimgray;
+    transition: 0.5s;
+}
+.dia>a{
+    transition: all .3s ease-out 0s;
+    padding-left: 10px;
+    border-radius: 20px;
+    display: block;
+    height: 40px;
+    width: 100%;
+    color: black ;
+    text-decoration: none;
+
+    line-height: 40px;
+}
+.dia>a:hover{
+    display: block;
+    height: 40px;
+    width: 100%;
+    color: black ;
+    text-decoration: none;
+    line-height: 40px;
+    background: #E9EAEC;
+}
+.collection{
+    padding-left: 10px;
+    border-radius: 20px;
+    height: 40px;
+    width: 100%;
+    color: black;
+    /*text-align: start;*/
+    line-height: 40px;
+    cursor:pointer ;
+    transition: all .3s ease-out 0s;
+}
+.collection:hover{
+    height: 40px;
+    width: 100%;
+    color: black;
+    background: #E9EAEC;
+    /*text-align: start;*/
+    line-height: 40px;
+
+    cursor:pointer ;
+}
+.dia{
+    display: none;
+    /*height: 100%;*/
+    /*width: 100%;*/
+
+    margin-bottom: 5px;
+    transition: all .3s ease-out 0s;
+}
+.dia.visible{
+    transition: all .3s ease-out 0s;
+    display: block;
+}
+.history.expanded{
+    color: dimgray;
+}
+.shell{
+    background: #f3f4f6;
+    width: 300px;
+    height: 70px;
+    position: fixed;
+    bottom: 10px;
+    align-items: center;
+    justify-content: center;
+    /*text-align: center;*/
 }

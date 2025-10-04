@@ -1,21 +1,32 @@
 console.log('Happy developing ✨')
 
 document.addEventListener('DOMContentLoaded', function() {
-
+    //variables declaration
     const trigger = document.getElementById('moremenu');
     const content = document.getElementById('morecontent');
     const close = document.getElementsByClassName('close')[0];
     const closebutton = document.getElementsByClassName('closebutton')[0];
     const text = document.getElementsByClassName('text')[0];
     const download = document.getElementById('upload');
+    const lever = document.getElementsByClassName('history')[0];
+    const dia = document.getElementsByClassName('dia')[0];
 
-    //More List Expansion Event
+
+
+
+    //More List Expansion Event , 2 phrases
     trigger.addEventListener('click', () => {
 
         content.classList.toggle('visible');
 
         trigger.classList.toggle('expanded');
     });
+
+    lever.addEventListener('click', () => {
+        dia.classList.toggle('visible');
+        lever.classList.toggle('expanded');
+    })
+
 
     //Upload Button Status Change
     download.classList.add('disabled');

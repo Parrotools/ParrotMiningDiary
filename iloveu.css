@@ -5,16 +5,27 @@
 
 .main{
     width: 100%;
-    height: 100%;
+    min-height: 100vh;
+    display: flex;
+    overflow: hidden;
 }
 
 /*左侧边栏*/
 .left{
      width: 300px;
-    height: 100vh;
+    min-height: 100vh;
+    height: 100%;
     background: #f3f4f6;
-    float: left;
+    /*float: left;*/
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    float: none;
+    position: fixed;
+
+
 }
+
 .left-title{
     height: 70px;
     width: 100%;
@@ -65,7 +76,7 @@
     margin-right: 15px;
     display: inline-block;
     float: right;
-    font-size: 20px;
+    font-size: 15px;
     font-weight: bolder;
     color: dimgray;
     transition: 0.5s;
@@ -155,11 +166,13 @@
     display: block;
 }
 .download{
+    position: absolute;
     height: 40px;
+    margin: 20px auto 0;
     width: 250px;
     padding-left: 25px;
     padding-top: 10px;
-    position: fixed;
+    /*position: fixed;*/
     left: 15px;
     bottom: 20px;
     background-color: white;
@@ -191,8 +204,10 @@
     box-sizing: border-box;
     min-height: 100vh;
     padding-top: 70px;
-    margin-left: 300px;
-    width: calc(100vw - 300px);
+    /*margin-left: 300px;*/
+    /*width: calc(100vw - 300px);*/
+    flex: 1;
+    /*overflow: auto;*/
 
 
 }
@@ -258,9 +273,11 @@
     margin: 0 auto;
     padding: 20px;
     height: 700px;
+    /*height: 100vh;*/
     width: 800px;
     background-color: white;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    /*box-shadow: 0 2px 10px rgba(0,0,0,0.1);*/
+
 }
 .hello{
     font-family: "华文琥珀";
@@ -275,27 +292,223 @@
 }
 
 .text{
-    margin-top: 25px;
+
+    flex: 1;
+    margin-left: 5px;
     resize: none;
-    width: 50%;
-    height: 10px;
+    width: 93%;
+    height: 1px;
     /*max-height: 100px;*/
     padding: 20px;
     font-size: 16px;
     line-height: 1.8;
-    border: 2px solid #ddd;
+    border:none;
+    /*border: 2px solid #ddd;*/
     border-radius: 25px;
-    margin-left: 300px;
-    overflow-y: auto;
+    /*margin-left: 300px;*/
+    overflow-y: hidden;
+    /*box-shadow: 0 2px 10px rgba(0,0,0,0.1);*/
     /*background-color: #fff;*/
-    /*color: #333;*/
+    color: #333;
     /*transition: border-color 0.3s;*/
 }
 .text:focus{
-    border-color: #1677ff; /* 匹配主色调 */
+    /*border-color: #1677ff; !* 匹配主色调 *!*/
     outline: none;
-    box-shadow: 0 0 0 3px rgba(22, 119, 255, 0.1);
+    /*box-shadow: 0 0 0 3px rgba(22, 119, 255, 0.1);*/
+}
+.text::placeholder{
+    color: grey;
 }
 .button1{
+    line-height:80px ;
+    text-align: center;
+    display: inline-block;
+    height: 80px;
+    width: 300px;
+    border-radius: 20px;
+    background-color: white;
+    border: lightgray solid 1px;
+    cursor: pointer;
+    float: left ;
+    margin-left: 80px;
 
+}
+.buttons{
+    height: 400px;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+    gap: 20px;
+
+}
+
+
+.button1:hover{
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+
+}
+.button2{
+    line-height:80px ;
+    text-align: center;
+    display: inline-block;
+    height: 80px;
+    width: 300px;
+    border-radius: 20px;
+    background-color: white;
+    border: lightgray solid 1px;
+    cursor: pointer;
+    float: right;
+    margin-right: 80px;
+}
+.button2:hover{
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+.button3{
+    margin-top: 10px;
+    line-height:80px ;
+    text-align: center;
+    display: inline-block;
+    height: 80px;
+    width: 300px;
+    border-radius: 20px;
+    background-color: white;
+    border: lightgray solid 1px;
+    cursor: pointer;
+    float: left ;
+    margin-left: 80px;
+}
+.button3:hover{
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+
+}
+.button4{
+    margin-top: 10px;
+    line-height:80px ;
+    text-align: center;
+    display: inline-block;
+    height: 80px;
+    width: 300px;
+    border-radius: 20px;
+    background-color: white;
+    border: lightgray solid 1px;
+    cursor: pointer;
+    float: right;
+    margin-right: 80px;
+
+}
+.button4:hover{
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+.mainbutton{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 500px;
+    display: inline-block;
+    cursor: pointer;
+    height: 50px;
+    width: 200px;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 30px;
+    background:linear-gradient(to right,#F5F8FD,#FBD7CA);
+    position: relative;
+}
+.mainbutton:hover{
+    
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+#moremenu.expanded span{
+    rotate: -180deg;
+}
+.button{
+    box-shadow: 0 0 0 3px rgba(22, 119, 255, 0.1);
+    margin: 0 auto;
+    background: white;
+    width: 100%;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+    /*align-items: baseline;*/
+    /*align-items: flex-end;*/
+    border: 2px solid #ddd;
+    border-radius: 25px;
+}
+#upload{
+
+    background: #0057FF;
+    cursor: pointer;
+    transition: background .3s ease-out 0s;
+}
+#upload:hover{
+    background: #004ad9;
+
+}
+.buttons2{
+
+    margin-right: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.choice{
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    width: 80px;
+    margin-right: 10px;
+    border: lightgray solid 1px;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background .3s ease-out 0s;
+}
+.leftgroups{
+    margin-left: 20px;
+    gap: 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    margin-bottom: 10px;
+}
+.rightgroups{
+    /*margin-bottom: 0vh;*/
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+.choice:hover{
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+#upload.disabled{
+    cursor: not-allowed;
+    background-color: #D9D9D9;
+}
+/*.download.disabled:hover{}*/
+#upload.disabled:hover{
+    cursor: not-allowed;
+    background-color: #f5f5f5;
+}
+.closebutton{
+    border-radius: 50%;
+    border: lightgray solid 1px;
+    line-height: 16px;
+    text-align: center;
+    width: 20px;
+    height: 20px;
+    /*position: absolute;*/
+    cursor: pointer;
+    display: none;
+}
+.close{
+    display: flex;
+    gap: 0;
+}
+.close:hover .closebutton{
+    display: block;
+}
+.close.disabled{
+    visibility: hidden;
 }

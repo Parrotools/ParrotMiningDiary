@@ -10,9 +10,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const download = document.getElementById('upload');
     const lever = document.getElementsByClassName('history')[0];
     const dia = document.getElementsByClassName('dia')[0];
-
-
-
+    const history = document.getElementsByClassName('history')[0];
+    const control = document.getElementsByClassName('control')[0];
+    const account = document.getElementsByClassName('profile')[0];
 
     //More List Expansion Event , 2 phrases
     trigger.addEventListener('click', () => {
@@ -43,5 +43,18 @@ document.addEventListener('DOMContentLoaded', function() {
     closebutton.addEventListener('click', () => {
         close.classList.add('disabled');
     });
+
+    //Sidebar Hidden Effects
+    history.addEventListener('click', () => {
+       control.classList.toggle('disabled');
+    });
+
+    //login and register
+    account.addEventListener('click', () => {
+
+    });
+
+
+
 
 });

@@ -630,3 +630,6 @@
     justify-content: center;
     /*text-align: center;*/
 }
+.control.disabled{
+    display: none;
+}

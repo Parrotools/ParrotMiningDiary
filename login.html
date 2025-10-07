@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登陆注册页面</title>
+    <style>
+        .tabs{
+            display: flex;
+
+            gap: 15px;
+        }
+        .back{
+            border-radius: 20px;
+
+            align-items: center;
+            width: 200px;
+            height: 50px;
+            background-color: #dddddd;
+            display: flex;
+            flex-direction: row;
+            cursor: default;
+        }
+        .icon{
+            margin-left: 15px;
+            font-weight: bolder;
+            font-size: 26px;
+            color: white;
+            line-height: 37px;
+            text-align: center;
+            border-radius: 50%;
+            background-color: #0057FF;
+            height: 40px;
+            width: 40px;
+            cursor: pointer;
+            transition: background .3s ease-out 0s;
+        }
+        .icon:hover{
+          background-color:  #004ad9;
+        }
+        .back:hover{
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .explain{
+            margin-left: 10px;
+        }
+        .back>a{
+            text-decoration: none;
+        }
+        .account,.password{
+            margin-top: 20px;
+            background-color: #f5f5f5;
+            height: 60px;
+            width: 270px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+        }
+        .account input, .password input{
+            border: none;
+            background: transparent;
+            outline: none;
+            margin-left: 10px;
+            flex: 1;
+            height: 30px;
+            font-size: 16px;
+        }
+        .pad{
+            margin-top: 70px;
+            display: flex;
+            flex-direction: column;
+
+            align-items: center;
+
+            gap: 20px;
+
+        }
+        body{
+            background-color: #E5EBF7;
+        }
+        #loginTab , #registerTab{
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background-color: #0057FF;
+            color: white;
+        }
+        #loginTab.disabled{
+            background-color: #DDDDDD;
+            color: #333;
+        }
+        #registerTab.disabled{
+            background-color: #DDDDDD;
+            color: #333;
+        }
+        #submitBtn{
+
+            margin-left:20px;
+            margin-top: 20px;
+            width: 270px;
+            height: 50px;
+            border-radius: 25px;
+            border: none;
+            background-color: #0057FF;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        #message{
+
+            color: #ff3333;
+            height: 20px;
+            margin-top: 10px
+        }
+        #message.disabled{
+            visibility: hidden;
+        }
+
+
+    </style>
+
+</head>
+<body>
+<div class="pad">
+
+<!--  Mode Switching Buttons  -->
+    <div class="tabs">
+        <button id="loginTab">登录</button>
+        <button id="registerTab">注册</button>
+    </div>
+
+<!--  Interactive Blanks  -->
+    <div class="main">
+        <div class="account">
+            <span class="account_head">账号</span>
+            <input type="text" id="username" placeholder="请输入账号">
+        </div>
+        <div class="password">
+            <span class="password_head">密码</span>
+            <input type="password" id="password" placeholder="请输入密码">
+        </div>
+        <div id="message">请输入正确的账号密码</div>
+        <button id="submitBtn">登录</button>
+    </div>
+
+<!--  Return to the lobby  -->
+    <div class="back">
+        <a href="index.html">
+        <div class="icon">←</div>
+        </a>
+        <div class="explain">点击返回主页</div>
+    </div>
+</div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const loginTab = document.getElementById('loginTab');
+        const registerTab = document.getElementById('registerTab');
+        const message = document.getElementById('message');
+        const submitBtn = document.getElementById('submitBtn');
+        const usernameInput = document.getElementById('username');
+        const passwordInput = document.getElementById('password');
+
+
+        let buttonmode = true;//true时是登录，false是注册
+
+        message.classList.add('disabled');
+        registerTab.classList.add('disabled');
+        //registration clicking
+        registerTab.addEventListener('click', () => {
+            registerTab.classList.remove('disabled');
+            loginTab.classList.add('disabled');
+            submitBtn.textContent = "注册";
+            buttonmode = false;
+            message.classList.add('disabled');
+        });
+        //login in clicking
+        loginTab.addEventListener('click', () => {
+            registerTab.classList.add('disabled');
+            loginTab.classList.remove('disabled');
+            buttonmode = true;
+            submitBtn.textContent = "登录";
+            message.classList.add('disabled');
+        });
+        submitBtn.addEventListener('click', () => {
+            const username = usernameInput.value.trim();
+            const password = passwordInput.value.trim();
+
+            if(!buttonmode){
+                handleRegister(username, password);
+            }
+            else{
+                handleLogin(username, password);
+            }
+        })
+
+        //registration function
+        function handleRegister(username, password) {
+
+            const users = JSON.parse(localStorage.getItem('users') || '{}');
+
+
+            if (users[username]) {
+                message.textContent = "该账户已存在";
+                message.classList.remove('disabled');
+
+                return;
+            }
+
+            // 存储新用户
+            users[username] = password;
+            localStorage.setItem('users', JSON.stringify(users));
+
+            message.textContent = "注册成功，即将跳转到登录";
+            message.style.color = "#33cc33";
+            message.classList.remove('disabled');
+
+            // 延迟后自动切换到登录模式
+            setTimeout(() => {
+                loginTab.click();
+
+                passwordInput.value = "";
+                message.classList.add('disabled');
+                message.style.color = "#ff3333";
+            }, 1000);
+        }
+        function handleLogin(username, password) {
+            const users = JSON.parse(localStorage.getItem('users') || '{}');
+            const storedPassword = users[username];
+
+            if (!!storedPassword && storedPassword === password) {
+
+                message.textContent = "登录成功";
+                message.style.color = "#33cc33";
+                message.classList.remove('disabled');
+
+
+
+                setTimeout(() => {
+                    window.location.href = "index.html";
+                }, 1000);
+            } else {
+                // 登录失败
+                message.textContent = "账号或密码错误";
+                message.classList.remove('disabled');
+
+            }
+        }
+
+
+
+
+
+
+
+    })
+</script>
+</body>
+</html>

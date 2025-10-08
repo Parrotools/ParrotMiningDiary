@@ -212,7 +212,7 @@
                 return;
             }
 
-            // 存储新用户
+
             users[username] = password;
             localStorage.setItem('users', JSON.stringify(users));
 
@@ -220,7 +220,7 @@
             message.style.color = "#33cc33";
             message.classList.remove('disabled');
 
-            // 延迟后自动切换到登录模式
+
             setTimeout(() => {
                 loginTab.click();
 
@@ -245,8 +245,8 @@
                     window.location.href = "index.html";
                 }, 1000);
             } else {
-                // 登录失败
-                message.textContent = "账号或密码错误";
+
+                message.textContent = "请输入正确的账号和密码";
                 message.classList.remove('disabled');
 
             }

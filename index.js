@@ -13,6 +13,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const history = document.getElementsByClassName('history')[0];
     const control = document.getElementsByClassName('control')[0];
     const account = document.getElementsByClassName('profile')[0];
+    const replies = [
+      "1","2","3","4","5","6","7","8","9","10","11","12"
+    ];
+
 
     //More List Expansion Event , 2 phrases
     trigger.addEventListener('click', () => {
@@ -54,7 +58,35 @@ document.addEventListener('DOMContentLoaded', function() {
 
     });
 
+    //Send msg
+    document.getElementsByClassName('chat')[0].classList.add('disabled');
+
+    download.addEventListener('click', () => {
+        if(text.value.trim() !== '') {
+            const info = text.value.trim();
+            document.getElementsByClassName('buttons')[0].classList.add('disabled');
+            document.getElementsByClassName('chat')[0].classList.remove('disabled');
+            closebutton.click();
+            text.value = '';
+            download.classList.add('disabled');
+            addMessageToChat(info,'sent');
+            const randomReply = replies[Math.floor(Math.random() * replies.length)];
+            addMessageToChat(randomReply,'replies');
 
 
+        }
+
+    });
+    text.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+            download.click();
+        }
+    })
+    function addMessageToChat(text,type) {
+        const message = document.createElement('div');
+        message.className = `msgBubbles ${type === 'sent' ? 'sent-message' : 'received-message'}`;
+        message.textContent = text;
+        document.getElementsByClassName('chat')[0].appendChild(message);
+    }
 
 });

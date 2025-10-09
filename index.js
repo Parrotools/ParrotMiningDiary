@@ -9,13 +9,17 @@ document.addEventListener('DOMContentLoaded', function() {
     const text = document.getElementsByClassName('text')[0];
     const download = document.getElementById('upload');
     const lever = document.getElementsByClassName('history')[0];
-    const dia = document.getElementsByClassName('dia')[0];
+    let dia = document.getElementsByClassName('dia')[0];
     const history = document.getElementsByClassName('history')[0];
     const control = document.getElementsByClassName('control')[0];
     const account = document.getElementsByClassName('profile')[0];
     const replies = [
       "1","2","3","4","5","6","7","8","9","10","11","12"
     ];
+    let dialog = dia.querySelectorAll('a');
+    let newDia = document.querySelector('.new-dia');
+    let chatContainer = document.querySelector('.chat');
+
 
 
     //More List Expansion Event , 2 phrases
@@ -73,7 +77,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const randomReply = replies[Math.floor(Math.random() * replies.length)];
             addMessageToChat(randomReply,'replies');
 
-
         }
 
     });
@@ -88,5 +91,60 @@ document.addEventListener('DOMContentLoaded', function() {
         message.textContent = text;
         document.getElementsByClassName('chat')[0].appendChild(message);
     }
+
+    //New & Histories
+
+    newDia.addEventListener('click', () => {
+
+        chatContainer.innerHTML = '';
+
+
+       document.querySelectorAll('.dia a').forEach(item =>
+       {
+           item.classList.remove('activedia');
+       });
+
+
+        document.querySelector('.hello').style.display = 'block';
+        document.querySelector('.buttons').classList.remove('disabled');
+        chatContainer.classList.add('disabled');
+
+
+        const newHisDialog = document.createElement('a');
+        newHisDialog.className = 'dialog activedia';
+        newHisDialog.href = '#';
+        newHisDialog.textContent = `🏛历史对话${dia.querySelectorAll('a').length + 1}`;
+
+        newHisDialog.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.querySelectorAll('.dia a').forEach(item => {
+                item.classList.remove('activedia')
+            });
+            newHisDialog.classList.add('activedia');
+
+        });
+
+        dia.appendChild(newHisDialog);
+
+        dialog.push(newHisDialog);
+    });
+    setActive(0);
+    function setActive(index) {
+        dia.querySelectorAll('a').forEach(item =>
+        {
+            item.classList.remove('activedia')
+        });
+        if (dialog[index]) {
+            dialog[index].classList.add('activedia');
+        }
+    }
+
+    dialog.forEach((item, index) => {
+        item.addEventListener('click', (e) => {
+            e.preventDefault();
+            setActive(index);
+        });
+    });
+
 
 });
